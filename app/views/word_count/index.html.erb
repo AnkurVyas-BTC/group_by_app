@@ -1,0 +1,57 @@
+ <% stop_words = ["a", "about", "above", "above", "across", "after", "afterwards", "again", "against", "all", "almost", "alone", "along", "already", "also","although","always","am","among", "amongst", "amoungst", "amount",  "an", "and", "another", "any","anyhow","anyone","anything","anyway", "anywhere", "are", "around", "as",  "at", "back","be","became", "because","become","becomes", "becoming", "been", "before", "beforehand", "behind", "being", "below", "beside", "besides", "between", "beyond", "bill", "both", "bottom","but", "by", "call", "can", "cannot", "cant", "co", "con", "could", "couldnt", "cry", "de", "describe", "detail", "do", "done", "down", "due", "during", "each", "eg", "eight", "either", "eleven","else", "elsewhere", "empty", "enough", "etc", "even", "ever", "every", "everyone", "everything", "everywhere", "except", "few", "fifteen", "fify", "fill", "find", "fire", "first", "five", "for", "former", "formerly", "forty", "found", "four", "from", "front", "full", "further", "get", "give", "go", "had", "has", "hasnt", "have", "he", "hence", "her", "here", "hereafter", "hereby", "herein", "hereupon", "hers", "herself", "him", "himself", "his", "how", "however", "hundred","i" ,"ie", "if", "in", "inc", "indeed", "interest", "into", "is", "it", "its", "itself", "keep", "last", "latter", "latterly", "least", "less", "ltd", "made", "many", "may", "me", "meanwhile", "might", "mill", "mine", "more", "moreover", "most", "mostly", "move", "much", "must", "my", "myself", "name", "namely", "neither", "never", "nevertheless", "next", "nine", "no", "nobody", "none", "noone", "nor", "not", "nothing", "now", "nowhere", "of", "off", "often", "on", "once", "one", "only", "onto", "or", "other", "others", "otherwise", "our", "ours", "ourselves", "out", "over", "own","part", "per", "perhaps", "please", "put", "rather", "re", "same", "see", "seem", "seemed", "seeming", "seems", "serious", "several", "she", "should", "show", "side", "since", "sincere", "six", "sixty", "so", "some", "somehow", "someone", "something", "sometime", "sometimes", "somewhere", "still", "such", "system", "take", "ten", "than", "that", "the", "their", "them", "themselves", "then", "thence", "there", "thereafter", "thereby", "therefore", "therein", "thereupon", "these", "they", "thickv", "thin", "third", "this", "those", "though", "three", "through", "throughout", "thru", "thus", "to", "together", "too", "top", "toward", "towards", "twelve", "twenty", "two", "un", "under", "until", "up", "upon", "us", "very", "via", "was", "we", "well", "were", "what", "whatever", "when", "whence", "whenever", "where", "whereafter", "whereas", "whereby", "wherein", "whereupon", "wherever", "whether", "which", "while", "whither", "who", "whoever", "whole", "whom", "whose", "why", "will", "with", "within", "without", "would", "yet", "you", "your", "yours", "yourself", "yourselves", "the"].join( ' ') %>
+
+<% sentence =  'Five Tips to Consistent Selling on Ghostbloggers Here at GhostBloggers.net, we’ve seen what it takes for articles to sell consistently, and why other pieces are unsuccessful. Here are five tips to make sure that all of your articles are sale-ready. 1. Use an effective title.Publishers see only three things before deciding whether to purchase your article: the title, the summary, and the first couple of lines of the piece. Make it count! Your title should be short; keep it to one line, and preferably under about ten words.The big challenge is accurately describing your article in a minimal number of words. Abstract titles like “Thoughts…,” “The Best Solution,” and “A Way to Improve Life” don’t give the publisher any idea of what your article is about, so they’re less likely to get clicked on, viewed, and eventually, purchased.Once you’ve written your title, make sure you capitalize it correctly. This is the most common mistake on the site. Basically, every word should be capitalized except for articles like “to,” “on,” “the,” “in,” “and,” “with,” “of,” “a,” etc. The first word is always capitalized, no matter what! '
+%>
+
+
+<% counter1 = WordsCounted.count(sentence) %>
+<% counter = WordsCounted.count(sentence, exclude: stop_words) %>
+
+
+
+<h1>Text</h1>
+
+<p> <%= sentence%></p>
+
+
+<h1>Word Count</h1>
+
+
+<p><b>Total Words</b> =  <%= counter1.token_count %></p>
+
+<p><b>Token Density</b></p>
+
+<% counter.token_density.first(5).each do |arr| %>
+  <%= arr[0]%> - <%= arr[1]*100%> % 
+  <br>
+<% end %>
+
+
+<p><b>Counter Frequency </b></p>
+
+
+<% counter.token_frequency.first(5).each do |arr| %>
+  <%= arr[0]%> - <%= arr[1]%>
+  <br>
+<% end %>
+
+<p><b>Most Frequent Token</b></p>
+
+<% counter.most_frequent_tokens.first(5).each do |arr| %>
+  <%= arr[0]%> - <%= arr[1]%>
+  <br>
+<% end %>
+
+
+<!-- <p><b>Token Lenghts</b> =  <%= counter.token_lengths %></p> -->
+
+<!-- <p><b>Longest Token</b></p>
+
+<% counter.longest_tokens.first(5).each do |arr| %>
+  <%= arr[0]%> - <%= arr[1]%>
+  <br>
+<% end %> -->
+
+
+
+

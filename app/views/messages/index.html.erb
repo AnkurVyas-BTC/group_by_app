@@ -1,0 +1,28 @@
+<h1>Messages</h1>
+
+<!-- Todays messages -->
+
+<% if @grouped_messages.present? && @grouped_messages[true].present? %>
+  <h3> Today </h3>
+  <% @grouped_messages[true].each do |msg| %>
+    <%= msg.content %>
+    <%= msg.created_at.strftime('%I:%M %p') %> 
+    <br />
+  <% end %> 
+  <br />
+<% end %>
+
+
+<!-- Month wise sorted messages -->
+
+<% if @month_wise_sorted_alerts.present? %>
+  <% @month_wise_sorted_alerts.each do |hash_elements|%>
+  <h3> <%= Date::MONTHNAMES[hash_elements.first] %> </h3>
+  <% hash_elements.last.each do |msg| %>
+    <%= msg.content %>
+    <%= msg.created_at.strftime('%b %d') %> 
+    <br />
+  <% end %> 
+  <br />
+  <% end %>
+<% end %>
